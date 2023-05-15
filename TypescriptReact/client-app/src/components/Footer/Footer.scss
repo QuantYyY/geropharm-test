@@ -1,0 +1,11 @@
+$backgroundColor: #f5f5f5;
+
+.footer{
+    background-color: $backgroundColor;
+    position: absolute;
+    height: 100px;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
