@@ -16,15 +16,34 @@ namespace TypescriptReact.Controllers
         }
 
         [HttpGet]
-        public JsonResult Get()
+        public JsonResult Get(int limit, int offset)
         {
-            string query = @"
-                select id as ""id"",
-                    title as ""title"",
-                    post as ""post"",
-                    author as ""author""
-                from posts;
+
+            string query = string.Empty;
+
+            if (limit == 0 && offset == 0)
+            {
+                query = @"
+                SELECT id AS ""id"",
+                    title AS ""title"",
+                    post AS ""post"",
+                    author AS ""author""
+                FROM posts;
             ";
+            }
+            else
+            {
+                query = @"
+                SELECT id AS ""id"",
+                    title AS ""title"",
+                    post AS ""post"",
+                    author AS ""author""
+                FROM posts
+                ORDER BY id
+                LIMIT @limit OFFSET @offset;
+            ";
+            }
+
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("geropharmdb");
@@ -34,7 +53,8 @@ namespace TypescriptReact.Controllers
                 myCon.Open();
                 using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("");
+                    myCommand.Parameters.AddWithValue("@limit", limit);
+                    myCommand.Parameters.AddWithValue("@offset", offset);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
 
@@ -63,9 +83,9 @@ namespace TypescriptReact.Controllers
                 myCon.Open();
                 using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@StudentName", posts.title);
-                    myCommand.Parameters.AddWithValue("@StudentContact", posts.post);
-                    myCommand.Parameters.AddWithValue("@StudentName", posts.author);
+                    myCommand.Parameters.AddWithValue("@title", posts.title);
+                    myCommand.Parameters.AddWithValue("@post", posts.post);
+                    myCommand.Parameters.AddWithValue("@author", posts.author);
                     myReader = myCommand.ExecuteReader();
                     table.Load(myReader);
 
@@ -97,7 +117,6 @@ namespace TypescriptReact.Controllers
                 using (NpgsqlCommand myCommand = new NpgsqlCommand(query, myCon))
                 {
                     myCommand.Parameters.AddWithValue("@id", posts.id);
-                    myCommand.Parameters.AddWithValue("@post", posts.title);
                     myCommand.Parameters.AddWithValue("@post", posts.post);
                     myCommand.Parameters.AddWithValue("@author", posts.author);
                     myReader = myCommand.ExecuteReader();

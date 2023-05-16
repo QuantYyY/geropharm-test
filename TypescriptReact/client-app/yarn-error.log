@@ -1,5 +1,5 @@
 Arguments: 
-  E:\Soft\node.exe C:\Users\maxkh\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add sass
+  E:\Soft\node.exe C:\Users\maxkh\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add cross-spawn
 
 PATH: 
   C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;;E:\Soft\Git\cmd;C:\Program Files\MySQL\MySQL Server 5.5\bin;C:\Program Files (x86)\MySQL\MySQL Server 5.5\bin;E:\Soft\CMake\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;E:\Soft\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files\Docker\Docker\resources\bin;C:\Users\maxkh\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\maxkh\AppData\Local\Programs\Python\Python310\;C:\Users\maxkh\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\PyCharm 2021.3.3\bin;C:\Users\maxkh\AppData\Local\GitHubDesktop\bin;C:\Users\maxkh\AppData\Roaming\npm;C:\Users\maxkh\DataGrip 2022.1.5\bin;C:\Users\maxkh\.dotnet\tools;C:\Users\maxkh\AppData\Local\JetBrains\Toolbox\scripts;C:\Users\maxkh\AppData\Local\Programs\Microsoft VS Code\bin
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: UNKNOWN: unknown error, lstat 'E:\Work\geropharm-test\geropharm-test\TypescriptReact\client-app\node_modules\regenerator-transform\src\hoist.js'
+  Error: UNKNOWN: unknown error, scandir 'E:\Work\geropharm-test\geropharm-test\TypescriptReact\client-app\node_modules'
 
 npm manifest: 
   {
@@ -37,6 +37,7 @@ npm manifest:
       "react": "^17.0.2",
       "react-dom": "^17.0.2",
       "react-scripts": "4.0.3",
+      "sass": "^1.62.1",
       "ts-node": "^10.4.0",
       "typescript": "^4.1.2",
       "web-vitals": "^1.0.1"
@@ -3404,6 +3405,21 @@ Lockfile:
     resolved "https://registry.npmjs.org/check-types/-/check-types-11.1.2.tgz"
     integrity sha512-tzWzvgePgLORb9/3a0YenggReLKAIb2owL03H2Xdoe5pKcUyWRSEQ8xfCar8t2SIAuEDwtmx2da1YB52YuHQMQ==
   
+  "chokidar@>=3.0.0 <4.0.0":
+    version "3.5.3"
+    resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.3.tgz#1cf37c8707b932bd1af1ae22c0432e2acd1903bd"
+    integrity sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==
+    dependencies:
+      anymatch "~3.1.2"
+      braces "~3.0.2"
+      glob-parent "~5.1.2"
+      is-binary-path "~2.1.0"
+      is-glob "~4.0.1"
+      normalize-path "~3.0.0"
+      readdirp "~3.6.0"
+    optionalDependencies:
+      fsevents "~2.3.2"
+  
   chokidar@^2.1.8:
     version "2.1.8"
     resolved "https://registry.npmjs.org/chokidar/-/chokidar-2.1.8.tgz"
@@ -5953,6 +5969,11 @@ Lockfile:
     version "8.0.1"
     resolved "https://registry.npmjs.org/immer/-/immer-8.0.1.tgz"
     integrity sha512-aqXhGP7//Gui2+UrEtvxZxSquQVXTpZ7KDxfCcKAF3Vysvw0CViVaW9RZ1j1xlIYqaaaipBoqdqeibkc18PNvA==
+  
+  immutable@^4.0.0:
+    version "4.3.0"
+    resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.3.0.tgz#eb1738f14ffb39fd068b1dbe1296117484dd34be"
+    integrity sha512-0AOCmOip+xgJwEVTQj1EfiDDOkPmuyllDuTuEX+DDXUgapLAsBIfkg3sxCYyCEA8mQqZrrxPUGjcOQ2JS3WLkg==
   
   import-cwd@^2.0.0:
     version "2.1.0"
@@ -9910,6 +9931,15 @@ Lockfile:
       schema-utils "^3.0.0"
       semver "^7.3.2"
   
+  sass@^1.62.1:
+    version "1.62.1"
+    resolved "https://registry.yarnpkg.com/sass/-/sass-1.62.1.tgz#caa8d6bf098935bc92fc73fa169fb3790cacd029"
+    integrity sha512-NHpxIzN29MXvWiuswfc1W3I0N8SXBd8UR26WntmDlRYf0bSADnwnOjsyMZ3lMezSlArD33Vs3YFhp7dWvL770A==
+    dependencies:
+      chokidar ">=3.0.0 <4.0.0"
+      immutable "^4.0.0"
+      source-map-js ">=0.6.2 <2.0.0"
+  
   sax@~1.2.4:
     version "1.2.4"
     resolved "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz"
@@ -10226,6 +10256,11 @@ Lockfile:
     version "2.0.1"
     resolved "https://registry.npmjs.org/source-list-map/-/source-list-map-2.0.1.tgz"
     integrity sha512-qnQ7gVMxGNxsiL4lEuJwe/To8UnK7fAnmbGEEH8RpLouuKbeEm0lhbQVFIrNSuB+G7tVrAlVsZgETT5nljf+Iw==
+  
+  "source-map-js@>=0.6.2 <2.0.0":
+    version "1.0.2"
+    resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
+    integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
   
   source-map-js@^1.0.1:
     version "1.0.1"

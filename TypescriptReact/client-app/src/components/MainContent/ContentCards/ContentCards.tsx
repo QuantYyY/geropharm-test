@@ -1,39 +1,20 @@
 import React, { FC } from 'react';
+import { useAppSelector } from '../../../hook';
 import './ContentCards.scss';
 
-import { Grid, GridItem } from '@consta/uikit/Grid';
-import { Card } from '@consta/uikit/Card';
+import CardWithModal from './CardWithModal';
 
-interface ContentCardsProps {
-    numberCards: number;
-}
+const ContentCards: FC = () => {
 
-const ContentCards: FC<ContentCardsProps> = ({numberCards}) => {
-
-    let array = [];
-    for (let i = 0; i < numberCards; i++) {
-        array.push(
-            <>
-                <GridItem>
-                    <Card style={{ width: '150px', height: '100px' }}>
-                        Это карточка, в которой ничего нет, кроме текста. Здесь может быть что угодно.
-                    </Card>
-                </GridItem>
-            </>
-        )
-    }
+    const store = useAppSelector(store => store.posts);
 
     return (
         <>
-            <Grid
-                cols="5"
-                className='contentCards'
-                xAlign='center'
-                yAlign='center'
-                rowGap='l'
+            <div className="gridContainer"
+                style={{ gridTemplateColumns: `repeat(${store.options.widthCount}, 1fr)` }}
             >
-                {array}
-            </Grid>
+                <CardWithModal />
+            </div>
         </>
     );
 }

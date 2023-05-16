@@ -1,23 +1,36 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import './MainContent.scss';
 
 import ContentCards from "./ContentCards";
+import { useAppDispatch } from "../../hook";
+import { setQueryOptions } from "../../store/postsSlice";
 
 const MainContent: FC = () => {
 
-    const [number, setNumber] = useState(0);
+    const dispatch = useAppDispatch();
 
-    window.addEventListener('resize', () => {
-        const div = document.querySelector('.mainContent') as HTMLElement;
-        const sizeWidth = div.offsetWidth - parseFloat(getComputedStyle(div).paddingLeft) - parseFloat(getComputedStyle(div).paddingRight);
-        const sizeHeight = div.offsetHeight - parseFloat(getComputedStyle(div).paddingTop) - parseFloat(getComputedStyle(div).paddingBottom);
-        setNumber(parseInt(String(sizeWidth / 182)) * parseInt(String(sizeHeight / 132)));
+    window.addEventListener('DOMContentLoaded', () => {
+        const resizeHandler = () => {
+            const div = document.querySelector('.mainContent') as HTMLElement;
+            const sizeWidth = div.offsetWidth - parseFloat(getComputedStyle(div).paddingLeft) - parseFloat(getComputedStyle(div).paddingRight);
+            const sizeHeight = div.offsetHeight - parseFloat(getComputedStyle(div).paddingTop) - parseFloat(getComputedStyle(div).paddingBottom);
+            const number = parseInt(String(sizeWidth / 182)) * parseInt(String(sizeHeight / 132))
+
+            dispatch(setQueryOptions({
+                numberCards: number,
+                heightCount: parseInt(String(sizeHeight / 132)),
+                widthCount: parseInt(String(sizeWidth / 182)),
+            }));
+        };
+
+        resizeHandler();
+        window.addEventListener('resize', resizeHandler);
     });
 
     return (
         <>
             <div className="mainContent">
-                <ContentCards numberCards={number} />
+                <ContentCards />
             </div>
         </>
     );
