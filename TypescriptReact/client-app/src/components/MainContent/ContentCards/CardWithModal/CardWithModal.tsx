@@ -30,7 +30,7 @@ const CardWithModal: FC = () => {
             {store.posts.slice(0, store.options.numberCards).map((item, index) => (
                 <div className="grid-item" key={uuidv4()} >
                     <Card
-                        style={{ width: '150px', height: '100px', padding: 5 }}
+                        style={{ width: '150px', height: '100px', padding: 5, backgroundColor: '#c0c0c0' }}
                         onClick={() => openModal(index)}
                     >
                         <Text size='xs' align='center' className='cardTitle'>
